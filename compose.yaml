@@ -1,0 +1,43 @@
+services:
+  rosflight:
+
+    # Build image from dockerfile
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - ROS_DISTRO=humble  # Change for any version of ROS2
+
+    # Enable interactive shell, equivalent to -it for docker run commands
+    stdin_open: true
+    tty: true
+
+    # Mount volumes, equivalent to -v for docker run commands
+    volumes:
+      - ./demo_package:/rosflight_ws/src/demo_package
+
+# The following options can be uncommented if you want to enable things like GUIs,
+# USB devices, network access, and host memory access. Note that the GUIs use X11,
+# which will require installing a compatibility layer on Windows and MacOS.
+
+      # Mount USB devices (UNCOMMENT FOR USB DEVICE ACCESS)
+#      - /dev:/dev
+      # Mount files necessary for displaying graphics on X11 (UNCOMMENT FOR GUIs)
+#      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+#      - ${XAUTHORITY:-$HOME/.Xauthority}:/root/.Xauthority
+
+    # Set environment variables needed for displaying graphics (UNCOMMENT FOR GUIs)
+#    environment:
+#      - DISPLAY=${DISPLAY}
+#      - QT_X11_NO_MITSHM=1
+
+    # Give sudo access for USB devices and graphics (UNCOMMENT FOR GUIs OR USB ACCESS)
+#    privileged: true
+
+    # Give access to host network (UNCOMMENT TO USE ROS ACROSS NETWORK)
+#    network_mode: host
+
+    # Give access to host memory, letting local containers avoid network (UNCOMMENT IF
+    # USING MULTIPLE CONTAINERS ON SAME COMPUTER)
+#    ipc: host
+
