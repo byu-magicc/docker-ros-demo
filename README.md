@@ -36,7 +36,7 @@ TODO: Someone with Docker Desktop should figure out how to do this.
 
 To start the ROSflight simulation, use the command `ros2 launch rosflight_sim fixedwing_sim_io_joy.launch.py aircraft:=anaconda gui:=false` (remove the gui=false flag if you have GUIs enabled). Since ROSflight runs the exact same code in simulation as it does in real life, we need to set up the firmware and allow for control from ROSplane. Open a new termial in the Docker container and set the firmware parameters with `ros2 launch rosflight_sim fixedwing_init_firmware.launch.py`. Wait for that to complete. Arm the controller and disable RC override with these commands `ros2 service call /toggle_arm std_srvs/srv/Trigger && ros2 service call /toggle_override std_srvs/srv/Trigger`. Now, launch ROSplane with `ros2 launch rosplane_sim sim.launch.py aircraft:=anaconda`. If everything worked, then the MAV in the simulation should start flying!
 
-For more detailed information (if you run into problems) on using ROSplane and ROSflight, see [the ROSflight docs](www.rosflight.org).
+For more detailed information (if you run into problems) on using ROSplane and ROSflight, see [the ROSflight docs](https://docs.rosflight.org/git-main/).
 
 To make sure the MAV is actually moving in a headless environment, you can echo topics to see what the MAV is doing. Use `ros2 topic list` to show all avaliable topics, and then use `ros2 topic echo /topic_name` to see what is being published.
 
