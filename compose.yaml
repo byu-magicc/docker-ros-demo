@@ -1,5 +1,5 @@
 services:
-  rosflight:
+  rosflight_demo:
 
     # Build image from dockerfile
     build:

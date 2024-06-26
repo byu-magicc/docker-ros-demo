@@ -1,8 +1,10 @@
-# Base image. Uses largest ROS image with all desktop tools and GUIS.
-# Can replace with ros:${ROS_DISTRO} if you want a smaller image.
+# Base docker image. ros:${ROS_DISTRO} is a headless ROS image, which is smaller
+# in size but does not have any GUI tools. osrf/ros:${ROS_DISTRO}-desktop-full
+# is a larger image with most of ROS's GUI tools. Use the larger image if you
+# want GUI tools.
 ARG ROS_DISTRO
-FROM osrf/ros:${ROS_DISTRO}-desktop-full
-# FROM ros:${ROS_DISTRO}
+FROM ros:${ROS_DISTRO}
+# FROM osrf/ros:${ROS_DISTRO}-desktop-full 
 
 # Update system
 RUN apt update
@@ -24,3 +26,4 @@ RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /root/.bashrc
 RUN echo "source /rosflight_ws/install/setup.bash" >> /root/.bashrc
 RUN echo "source /usr/share/gazebo/setup.sh" >> /root/.bashrc
 ENTRYPOINT bash
+
