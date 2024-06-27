@@ -37,7 +37,3 @@ services:
     # Give access to host network (UNCOMMENT TO USE ROS ACROSS NETWORK)
 #    network_mode: host
 
-    # Give access to host memory, letting local containers avoid network (UNCOMMENT IF
-    # USING MULTIPLE CONTAINERS ON SAME COMPUTER)
-#    ipc: host
-
