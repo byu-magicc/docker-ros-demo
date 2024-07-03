@@ -1,10 +1,6 @@
-# Base docker image. ros:${ROS_DISTRO} is a headless ROS image, which is smaller
-# in size but does not have any GUI tools. osrf/ros:${ROS_DISTRO}-desktop-full
-# is a larger image with most of ROS's GUI tools. Use the larger image if you
-# want GUI tools.
+# Base docker image.
 ARG ROS_DISTRO
-FROM ros:${ROS_DISTRO}
-# FROM osrf/ros:${ROS_DISTRO}-desktop-full 
+FROM osrf/ros:${ROS_DISTRO}-desktop-full
 
 # Update system
 RUN apt update
@@ -19,7 +15,8 @@ RUN git clone https://github.com/rosflight/rosplane.git
 # Install ROS dependencies with rosdep dependencies and build packages
 WORKDIR /rosflight_ws
 RUN rosdep install --from-paths . --ignore-src -y
-RUN /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash && colcon build"
+# Remove "--executor sequential" to build faster on machines with more than 16gbs of RAM
+RUN /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash && colcon build --executor sequential"
 
 # Add source files to .bashrc for automatic sourcing
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /root/.bashrc
