@@ -16,7 +16,7 @@ If you use Windows or MacOS then you will need to install [Docker Desktop](https
 
 Running Docker in a headless environemnt is easy and should work out of the box. However, many ROS GUI tools like Gazebo, rqt_graph, and plotjuggler do not work in a headless environment. Fortunately GUIs can be used within Docker containers, but the setup is a little more complicated and machine specific. The Dockerfile and compose.yaml files included in this repo are set up to be able to display GUIs using a X11 windowing server. Most Linux distributions are compatible with the X11 protocol either through native X11 or Xwayland. Windows 11 should also have support through WSL. MacOS doesn't have native support, but a X server can be installed with [XQuarts](https://www.xquartz.org/).
 
-To enable GUIs with this Dockerfile and compose.yaml file, switch the base image in the Dockerfile to use `osrf/ros:${ROS_DISTRO}-desktop-full` instead of `ros:${ROS_DISTRO}` and uncomment any lines within the compose.yaml file that specify being needed for GUIs.
+To enable GUIs with this Dockerfile and compose.yaml file, uncomment any lines within the compose.yaml file that specify being needed for GUIs.
 
 TODO: At the time of writing, GUIs have only been tested on Linux. If you get this working on a Windows or MacOS machine, please submit a pull request to update this guide with instructions on how to replicate your work.
 
