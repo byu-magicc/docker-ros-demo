@@ -6,7 +6,7 @@ from std_srvs.srv import Trigger
 
 class CourseController(Node):
     
-    # This contronller drives the course to a particular heading by commanding a particular roll anlge, phi_c
+    # This controller drives the course to a particular heading by commanding a particular roll anlge, phi_c
 
     def __init__(self) -> None:
         super().__init__('YOUR_NAME_course_controller')
@@ -20,6 +20,7 @@ class CourseController(Node):
         # TODO: Create a timer that the control will be calulated and published on.
 
         # TODO: Optional: Create service to toggle the control on and off, or to set the desired course.
+
 
     def activate_control_callback(self, request, response): # Callback for service.
         # This is an example service that would toggle control.
