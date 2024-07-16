@@ -39,6 +39,21 @@ class CourseController(Node):
         # Control to a desired arbitrary course (chi).
         # See https://docs.rosflight.org/git-main/developer-guide/rosplane/controller/controller-outline/#course-loop
         # under outer loop for more details.
+
+        # OR just use the below controller
+        
+        course_angle = self.current_state.chi # Radians
+        
+        commanded_course_angle = self.commanded_course * 3.14159/180.0
+
+        error = commanded_course_angle - course_angle
+
+        self.integrator += (self.Ts / 2.0) * (error + self.prev_error);  
+
+        commanded_roll_angle = self.kp * error + self.kd*self.current_state.r + self.ki*self.integrator
+        
+        self.prev_error = error
+
         pass
 
 
