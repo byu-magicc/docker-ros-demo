@@ -7,6 +7,8 @@ from std_srvs.srv import Trigger
 class CourseController(Node):
     
     # This controller drives the course to a particular heading by commanding a particular roll anlge, phi_c
+    # NOTE: In order to run this file, you have to rename it to course_controller.py
+    #       (this requires renaming the original course_controller.py to something else entirely).
 
     def __init__(self) -> None:
         super().__init__('YOUR_NAME_course_controller')
